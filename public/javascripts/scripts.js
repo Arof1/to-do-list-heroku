@@ -107,11 +107,9 @@ $(function () {
                 contentType: 'application/json',
                 url: '/auth/register',
                 success: function () {
-                    console.log(this.data);
                 }
             }).done(function (data) {
                 $(location).attr('href', '/');
-                console.log(data);
             });
         }
     })

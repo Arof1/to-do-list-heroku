@@ -27,6 +27,7 @@ app.use(session({
     }),
     secret: 'dkasjhbdiasgdausida',
     resave: true,
+    saveUninitialized: true,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }))
 
@@ -54,12 +55,11 @@ app.get('/', (req, res) => {
     else {
         db.query('SELECT id, first_name, second_name FROM users', [], (err, result) => {
             let users = result.rows
-            return res.render('index', {
+            res.render('index', {
                 is_logged: false,
                 users: users
             })
         })
-
     }
 
 
