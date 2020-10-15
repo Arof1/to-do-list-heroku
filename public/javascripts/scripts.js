@@ -106,9 +106,7 @@ $(function () {
                 data: JSON.stringify(user_data),
                 contentType: 'application/json',
                 url: '/auth/register',
-                success: function () {
-                }
-            }).done(function (data) {
+            }).done(function () {
                 $(location).attr('href', '/');
             });
         }
@@ -120,7 +118,7 @@ $(function() {
         rules: {
             title: {
                 required: true,
-                maxlength: 64,
+                maxlength: 45,
             },
             deadline: {
                 required: true,
@@ -129,7 +127,7 @@ $(function() {
         messages: {
             title: {
                 required: "Это поле обязательно для заполнения",
-                maxlength: "Максимальное число символов - 64",
+                maxlength: "Максимальное число символов - 45",
             },
             deadline: {
                 required: "Это поле обязательно для заполнения",
@@ -164,7 +162,7 @@ $(function () {
         rules: {
             'edit-title': {
                 required: true,
-                maxlength: 64,
+                maxlength: 45,
             },
             'edit-deadline': {
                 required: true,
@@ -173,7 +171,7 @@ $(function () {
         messages: {
             'edit-title': {
                 required: "Это поле обязательно для заполнения",
-                maxlength: "Максимальное число символов - 64",
+                maxlength: "Максимальное число символов - 45",
             },
             'edit-deadline': {
                 required: "Это поле обязательно для заполнения",
@@ -199,10 +197,9 @@ $(function () {
                 data: JSON.stringify(user_data),
                 contentType: 'application/json',
                 url: '/tasks/edit',
-                success: function () {
-                    $(location).attr('href', '/');
-                }
-            })
+            }).done(function () {
+                $(location).attr('href', '/');
+            });
         }
     })
 })
