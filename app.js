@@ -53,7 +53,6 @@ app.get('/', (req, res) => {
     }
     else {
         db.query('SELECT id, first_name, second_name FROM users', [], (err, result) => {
-            console.log(result.rows);
             let users = result.rows
             res.render('index', {
                 is_logged: false,
