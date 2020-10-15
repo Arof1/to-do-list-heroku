@@ -1,16 +1,15 @@
 const pg = require('pg')
 
 const pool = new pg.Pool({
-    user: 'postgres',
-    host: '127.0.0.1',
-    database: 'to-do-list',
-    password: '{Arofmanarofman1',
-    port: 5432,
+    connectionString: process.env.DATABASE_URL
 });
 
 module.exports = {
     query: function(text, values, cb) {
         pool.connect(function(err, client, done) {
+            if (err) {
+                return;
+            }
             client.query(text, values, function(err, result) {
                 done();
                 cb(err, result);
