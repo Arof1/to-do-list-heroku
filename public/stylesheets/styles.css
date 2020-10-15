@@ -1,0 +1,422 @@
+* {
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+button {
+    cursor: pointer;
+}
+
+button:focus {
+    outline: none;
+}
+
+body {
+    min-height: 100vh;
+}
+
+.container {
+    width: 100%;
+    max-width: 1024px;
+    padding: 0 15px;
+    margin: 0 auto;
+    height: 100%;
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header {
+    height: 70px;
+    background-color: #0078D7;
+}
+
+.header__heading {
+    display: flex;
+    align-items: center;
+}
+
+.header__logo {
+    width: 50px;
+    height: 50px;
+}
+
+.header__name {
+    font-weight: bold;
+    font-size: 24px;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.header__login {
+}
+
+.header__profile {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.group-button {
+    font-size: 20px;
+    font-weight: lighter;
+    background: none;
+    appearance: none;
+    border: none;
+}
+
+.logout-button {
+    font-size: 20px;
+    font-weight: lighter;
+    background: none;
+    appearance: none;
+    border: none;
+}
+
+.login-button:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.login-button {
+    font-size: 24px;
+    font-weight: lighter;
+    background: none;
+    appearance: none;
+    border: none;
+}
+
+.login-button:hover {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.start-main {
+    margin-top: 150px;
+}
+
+.main .container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.start-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-logo {
+}
+
+.main-logo__img {
+    width: 233px;
+    height: 233px;
+}
+
+.authorization {
+    display: flex;
+    flex-direction: column;
+}
+
+.authorization__login {
+    margin-top: 60px;
+    font-size: 36px;
+    width: 250px;
+    height: 75px;
+}
+
+.blue-button {
+    background-color: #0078D7;
+
+    border-radius: 10px;
+    border: none;
+    font-weight: 500;
+}
+
+.blue-button:hover {
+    background-color: #106ebe;
+}
+
+.authorization__register {
+    font-weight: 400;
+    font-size: 24px;
+    margin-top: 27px;
+    color: #0078D7;
+    background: none;
+    border: none;
+}
+
+.authorization__register:hover {
+    text-decoration: underline;
+}
+
+/* ================ Стили модальных окон ================ */
+
+.modal {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1050;
+}
+
+
+.modal-register {
+    display: none;
+
+}
+
+.modal-login {
+    display: none;
+}
+
+.modal-add {
+    display: none;
+}
+
+.modal-edit {
+    display: none;
+}
+
+.modal-group {
+    display: none;
+}
+
+.modal-container {
+    min-height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    min-width: 500px;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header__img {
+    width: 50px;
+    height: 50px;
+}
+
+.modal-header__name {
+    margin-left: 17px;
+    color: #0078D7;
+    font-weight: 400;
+    font-size: 24px;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.input-group {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0;
+}
+
+.input-name {
+    color: #000;
+    font-weight: 300;
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.input-group input {
+    height: 27px;
+    color: #000;
+}
+
+.input-group input:focus {
+}
+
+.form__button {
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 20px;
+    width: 200px;
+    height: 50px;
+}
+
+.task-list {
+    margin-top: 20px;
+    width: 25%;
+    min-height: 750px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+.task-list__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 2px solid #0078d7;
+    border-radius: 10px;
+    padding-bottom: 10px;
+}
+
+.task-list__add {
+    margin-top: 15px;
+    border-radius: 35px;
+    height: 70px;
+    width: 70px;
+    margin-bottom: 10px;
+    background: none;
+    appearance: none;
+    border: none;
+}
+
+.task-list__add img {
+    width: 60px;
+    height: 60px;
+}
+
+.task-list__list {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-list__header {
+    min-height: 50px;
+    background-color: #0078d7;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.task-list__header span {
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.task-list__item {
+    height: 40px;
+    margin: 20px 20px 0;
+    border-radius: 7px;
+    border: none;
+    font-weight: 500;
+}
+
+.task-detail {
+    margin-top: 20px;
+    width: 72%;
+    min-height: 750px;
+    max-height: 750px;
+    border: 2px solid #0078D7;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.task-detail__header {
+    min-height: 50px;
+    background-color: #0078d7;
+    border-radius: 6px 6px 0 0;
+    display: flex;
+    align-items: center;
+    padding: 0 20px;
+}
+
+.task-detail__header span {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.task-detail__body * {
+    color: #000000;
+}
+
+.task-detail__footer * {
+    color: #000000;
+}
+select {
+    color: #000;
+}
+
+option {
+    color: #000000;
+}
+
+textarea {
+    color: #000;
+}
+
+.modal-add .modal-header img {
+    width: 30px;
+    height: 30px;
+}
+
+.modal-edit .modal-header img {
+    width: 30px;
+    height: 30px;
+}
+
+.task-detail__body {
+    display: flex;
+    flex-direction: column;
+}
+
+.task-detail__item-title {
+    color: #0078D7;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.task-detail__item-body {
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.task-detail__footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-detail__container {
+    padding: 25px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.task-detail__header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.task-detail__edit-button {
+    background: none;
+    appearance: none;
+    border: none;
+}
+
+.error {
+    margin-top: 5px;
+    color: #b91a0c;
+}

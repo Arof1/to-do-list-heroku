@@ -1,0 +1,82 @@
+
+<div class="main start-main">
+    <div class="container start-container">
+        <div class="main-logo"><img src="images/logo.svg" alt="" class="main-logo__img"></div>
+        <div class="authorization">
+            <button class="authorization__login blue-button login-button" id="login-button">Вход</button>
+            <button class="authorization__register" id="register-button">Регистрация</button>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-register" id="modal-register">
+    <div class="modal-container modal-register-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="images/logo.svg" alt="" class="modal-header__img">
+                <span class="modal-header__name">Регистрация</span>
+            </div>
+            <div class="modal-body">
+                <form id="register-form" class="form" action="" method="POST">
+                    <div class="input-group">
+                        <span class="input-name">Фамилия</span>
+                        <input type="text" name="second_name" id="register-second_name">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Имя</span>
+                        <input type="text" name="first_name" id="register-first_name">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Отчество</span>
+                        <input type="text" name="patronymic" id="register-patronymic">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Руководитель</span>
+                        <select name="manager" size="1" id="register-manager">
+                            <% for (let i = 0; i < users.length; i++) { %>
+                                <% if (i === 0) {%>
+                                    <option selected value="<%= users[i].id %>"><%= users[i].first_name + " " + users[i].second_name%></option>
+                                <% } else { %>
+                                    <option value="<%= users[i].id %>"><%= users[i].first_name + " " + users[i].second_name%></option>
+                                <% } %>
+                            <% } %>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Логин</span>
+                        <input type="text" name="user-login" id="register-login">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Пароль</span>
+                        <input type="password" name="password" id="register-password">
+                    </div>
+                    <button class="form__button blue-button" id="register-send-button" type="submit">Регистрация</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-login" id="modal-login">
+    <div class="modal-container modal-login-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="images/logo.svg" alt="" class="modal-header__img">
+                <span class="modal-header__name">Вход</span>
+            </div>
+            <div class="modal-body">
+                <form id="login-form"class="form" action="">
+                    <div class="input-group">
+                        <label for="login-login" class="input-name">Логин</label>
+                        <input type="text" name="login" id="login-login">
+                    </div>
+                    <div class="input-group">
+                        <label for="login-password" class="input-name">Пароль</label>
+                        <input type="password" name="password" id="login-password">
+                    </div>
+                    <button class="form__button blue-button" id="login-send-button" type="submit">Вход</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="stylesheets/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.3.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"></script>
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <div class="header__heading">
+            <img src="images/logo.svg" alt="" class="header__logo">
+            <a href="" class="header__name">To Do List</a></div>
+        <div class="header__menu">
+            <% if (!is_logged) { %>
+                <button class="login-button" id="login-button">Вход</button>
+            <% } else {%>
+                <span class="header__profile"><%= user.first_name %></span>
+                <button class="group-button">Группировать</button>
+                <button class="logout-button" id="logout-button">Выход</button>
+            <% } %>
+        </div>
+    </div>
+</header>

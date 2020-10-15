@@ -1,0 +1,194 @@
+<div class="main">
+    <div class="container">
+        <div class="task-list">
+            <div class="task-list__container">
+                <div class="task-list__header">
+                    <span>Список задач</span>
+                </div>
+                <div class="task-list__list">
+                    <% for (let i = 0; i < tasks.length; i++) { %>
+                        <button value="<%= tasks[i].id %>" class="task-list__item" style="background-color: <% let color = tasks[i].status === "К выполнению" ? "#C0C0C0" :
+                                (tasks[i].status === "Выполняется" ? "#0078D7" : (tasks[i].status === "Выполнена" ? "#50C67F" : "#ED6060")); if (new Date(tasks[i].deadline)
+                        < new Date() && tasks[i].status !== 'Выполнена') color = "#ED6060"; %> <%= color %>"><%= tasks[i].title %></button>
+                    <% } %>
+                </div>
+            </div>
+            <button class="task-list__add" id="task-list__add-button"><img src="images/add.svg" alt="Новая задача"></button>
+        </div>
+        <div class="task-detail">
+            <div class="task-detail__header">
+                <span class="task-detail__header-title__title"></span>
+                <span class="task-detail__header-title__status"></span>
+                <button task_id="" creator_id="" user_id="" class="task-detail__edit-button">Редактировать</button>
+            </div>
+            <div class="task-detail__container">
+                <div class="task-detail__body">
+                    <div class="task-detail__item">
+                        <span class="task-detail__item-title">Описание</span>
+                        <p class="task-detail__item-body task-detail__description"></p>
+                    </div>
+                    <div class="task-detail__item">
+                        <span class="task-detail__item-title">Дата создания</span>
+                        <p class="task-detail__item-body task-detail__creation-date"></p>
+                    </div>
+                    <div class="task-detail__item">
+                        <span class="task-detail__item-title">Дата окончания</span>
+                        <p class="task-detail__item-body task-detail__deadline"></p>
+                    </div>
+                    <div class="task-detail__item">
+                        <span class="task-detail__item-title">Дата обновления</span>
+                        <p class="task-detail__item-body task-detail__update-date"></p>
+                    </div>
+                    <div class="task-detail__item">
+                        <span class="task-detail__item-title">Приоритет</span>
+                        <p class="task-detail__item-body task-detail__priority"></p>
+                    </div>
+                </div>
+                <div class="task-detail__footer">
+                    <div class="task-detail__item">
+                        <span class="task-detail__item-title">Ответственный</span>
+                        <p class="task-detail__item-body task-detail__performer"></p>
+                    </div>
+                    <div class="task-detail__item">
+                        <span class="task-detail__item-title">Создатель</span>
+                        <p class="task-detail__item-body task-detail__creator"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-add" id="modal-add">
+    <div class="modal-container modal-add-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="images/pen.svg" alt="" class="modal-header__img">
+                <span class="modal-header__name">Новая задача</span>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="add-form" action="" method="POST">
+                    <div class="input-group">
+                        <span class="input-name">Заголовок</span>
+                        <input type="text" name="title" id="add-title">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Описание</span>
+                        <textarea name="description" id="add-description" cols="30" rows="3"></textarea>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Дата окончания</span>
+                        <input type="date" name="deadline" id="add-deadline" style="text-transform: uppercase;">
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Приоритет</span>
+                        <select name="priority" size="1" id="add-priority">
+                            <option selected value="Высокий">Высокий</option>
+                            <option value="Средний">Средний</option>
+                            <option value="Низкий">Низкий</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Ответственный</span>
+                        <select name="performer" size="1" id="add-performer">
+                            <option selected value="<%= user.id %>"><%= user.first_name + " " + user.second_name %></option>
+                            <% for (let i = 0; i < subordinates.length; i++) { %>
+                                <option value="<%= subordinates[i].id%>"><%= subordinates[i].first_name + " " + subordinates[i].second_name%></option>
+                            <% }%>
+                        </select>
+                    </div>
+                    <button class="form__button blue-button" id="add-send-button" type="submit">Добавить</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-edit" id="modal-edit">
+    <div class="modal-container modal-edit-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="images/pen.svg" alt="" class="modal-header__img">
+                <span class="modal-header__name">Редактировать</span>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="edit-form" action="" method="POST">
+                    <div class="input-group only-manager">
+                        <span class="input-name">Заголовок</span>
+                        <input type="text" name="title" id="edit-title">
+                    </div>
+                    <div class="input-group only-manager">
+                        <span class="input-name">Описание</span>
+                        <textarea name="description" id="edit-description" cols="30" rows="3"></textarea>
+                    </div>
+                    <div class="input-group only-manager">
+                        <span class="input-name">Дата окончания</span>
+                        <input type="date" name="deadline" id="edit-deadline" style="text-transform: uppercase;">
+                    </div>
+                    <div class="input-group only-manager">
+                        <span class="input-name">Приоритет</span>
+                        <select name="priority" size="1" id="edit-priority">
+                            <option selected value="Высокий">Высокий</option>
+                            <option value="Средний">Средний</option>
+                            <option value="Низкий">Низкий</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Статус</span>
+                        <select name="status" size="1" id="edit-status">
+                            <option selected value="К выполнению">К выполнению</option>
+                            <option value="Выполняется">Выполняется</option>
+                            <option value="Выполнена">Выполнена</option>
+                            <option value="Отменена">Отменена</option>
+                        </select>
+                    </div>
+                    <div class="input-group only-manager">
+                        <span class="input-name">Ответственный</span>
+                        <select name="performer" size="1" id="edit-performer">
+                            <option selected value="<%= user.id %>"><%= user.first_name + " " + user.second_name %></option>
+                            <% for (let i = 0; i < subordinates.length; i++) { %>
+                                <option value="<%= subordinates[i].id%>"><%= subordinates[i].first_name + " " + subordinates[i].second_name%></option>
+                            <% }%>
+                        </select>
+                    </div>
+                    <button class="form__button blue-button" id="edit-send-button" type="submit">Редактировать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-group" id="modal-group">
+    <div class="modal-container modal-group-container">
+        <div class="modal-content">
+            <div class="modal-header">
+                <img src="images/pen.svg" alt="" class="modal-header__img">
+                <span class="modal-header__name">Группировать</span>
+            </div>
+            <div class="modal-body">
+                <form class="form" id="edit-form" action="" method="GET">
+                    <div class="input-group">
+                        <span class="input-name">По дате</span>
+                        <select name="date" size="1" id="group-date">
+                            <option selected value="Все">Все</option>
+                            <option value="Сегодня">На сегодня</option>
+                            <option value="Неделя">На неделю</option>
+                            <option value="Будущее">На будущее</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <span class="input-name">Ответственный</span>
+                        <select name="performer" size="1" id="group-performer">
+                            <option selected value="Все">Все</option>
+                            <option value="<%= user.id %>"><%= user.first_name + " " + user.second_name %></option>
+                            <% for (let i = 0; i < subordinates.length; i++) { %>
+                                <option value="<%= subordinates[i].id%>"><%= subordinates[i].first_name + " " + subordinates[i].second_name%></option>
+                            <% }%>
+                        </select>
+                    </div>
+                    <button class="form__button blue-button" id="group-send-button" type="submit">Группировать</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

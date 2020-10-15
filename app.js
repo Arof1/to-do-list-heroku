@@ -7,7 +7,6 @@ const session = require('express-session');
 const pg_session = require('connect-pg-simple')(session);
 const routes = require('./routes');
 const usersRouter = require('./routes/users');
-const config = require('./config');
 const app = express();
 const db = require('./db')
 
