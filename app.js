@@ -25,7 +25,7 @@ app.use(session({
     store: new pg_session({
         pool : db.pool,                // Connection pool
     }),
-    secret: 'dk;asjhbdiasgdausida',
+    secret: 'dkasjhbdiasgdausida',
     resave: true,
     cookie: { maxAge: 30 * 24 * 60 * 60 * 1000 } // 30 days
 }))
