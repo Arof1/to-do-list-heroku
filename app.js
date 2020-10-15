@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
                 [req.session.userId], (err, result) => {
                     let tasks = result.rows;
                     db.query('SELECT id, login, first_name, second_name, patronymic FROM users WHERE id = $1', [req.session.userId], (err, result) => {
-                        res.render('index', {
+                        return res.render('index', {
                             user: result.rows[0],
                             is_logged: true,
                             subordinates: subordinates,
@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
     else {
         db.query('SELECT id, first_name, second_name FROM users', [], (err, result) => {
             let users = result.rows
-            res.render('index', {
+            return res.render('index', {
                 is_logged: false,
                 users: users
             })

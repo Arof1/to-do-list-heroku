@@ -21,7 +21,7 @@ router.post('/register', (req, res) => {
                 req.session.userLogin = login;
             });
         });
-    res.json({
+    return res.json({
         ok: true
     })
 });
@@ -36,19 +36,19 @@ router.post('/login', (req, res) => {
             console.log(err);
         }
         if (user == null) {
-            res.json({
+            return res.json({
                 login: false
             })
         } else {
             if (bcrypt.compareSync(password, user.password)) {
                 req.session.userId = user.id;
                 req.session.userLogin = user.login;
-                res.json({
+                return res.json({
                     login: true,
                     password: true
                 })
             } else {
-                res.json({
+                return res.json({
                     login: true,
                     password: false
                 })
@@ -61,7 +61,7 @@ router.get('/logout', ((req, res) => {
     if (req.session) {
         req.session.destroy();
     }
-    res.end();
+    return res.end();
 }))
 
 module.exports = router;
