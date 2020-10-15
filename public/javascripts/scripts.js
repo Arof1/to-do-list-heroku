@@ -118,7 +118,7 @@ $(function() {
         rules: {
             title: {
                 required: true,
-                maxlength: 45,
+                maxlength: 40,
             },
             deadline: {
                 required: true,
@@ -127,7 +127,7 @@ $(function() {
         messages: {
             title: {
                 required: "Это поле обязательно для заполнения",
-                maxlength: "Максимальное число символов - 45",
+                maxlength: "Максимальное число символов - 40",
             },
             deadline: {
                 required: "Это поле обязательно для заполнения",
@@ -162,7 +162,7 @@ $(function () {
         rules: {
             'edit-title': {
                 required: true,
-                maxlength: 45,
+                maxlength: 40,
             },
             'edit-deadline': {
                 required: true,
@@ -171,7 +171,7 @@ $(function () {
         messages: {
             'edit-title': {
                 required: "Это поле обязательно для заполнения",
-                maxlength: "Максимальное число символов - 45",
+                maxlength: "Максимальное число символов - 40",
             },
             'edit-deadline': {
                 required: "Это поле обязательно для заполнения",
@@ -198,6 +198,7 @@ $(function () {
                 contentType: 'application/json',
                 url: '/tasks/edit',
             }).done(function () {
+                console.log('end')
                 $(location).attr('href', '/');
             });
         }

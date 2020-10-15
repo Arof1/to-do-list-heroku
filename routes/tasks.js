@@ -38,7 +38,9 @@ router.post('/edit', (req, res) => {
         db.query(`UPDATE tasks SET title = $1, description = $2, deadline = $3, priority = $4,
                     performer_id = $5, status = $6, update_date = $7 WHERE id = $8`, [title, description, deadline,
                     priority, performer_id, status, new Date(), task_id], (err, result) => {
-            res.json();
+            res.json({
+                ok: true
+            });
         })
     }
     else {
@@ -46,7 +48,9 @@ router.post('/edit', (req, res) => {
         const status = req.body.status;
 
         db.query('UPDATE tasks SET status = $1 WHERE id = $2', [status, task_id], (err, result) => {
-            res.json();
+            res.json({
+                ok: true
+            });
         })
     }
 })
@@ -87,7 +91,7 @@ router.get('/group', (req, res) => {
     }
 
     else {
-        condition += 'WHERE status != \'Отменена\' and  and deadline >= date(\'' + date.toLocaleDateString().replace('.', '-') + '\')'
+        condition += 'WHERE status != \'Отменена\' and deadline >= date(\'' + date.toLocaleDateString().replace('.', '-') + '\')'
     }
 
     if (req.query.performer === 'Все') {
@@ -113,7 +117,7 @@ router.get('/group', (req, res) => {
                    ` + condition + ' ORDER by update_date', [], (err, result) => {
             console.log(`SELECT id, title, status, deadline
                    FROM tasks
-                   ` + condition + ' ORDER by update_date')
+                   ` + condition + ' ORDER by update_date DESC')
             res.json(result.rows)
     })
 })

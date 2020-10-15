@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
             let subordinates = result.rows;
             db.query(`SELECT id, title, status, deadline
                            FROM tasks
-                           WHERE creator_id = $1 OR performer_id = $1 ORDER BY update_date`,
+                           WHERE creator_id = $1 OR performer_id = $1 ORDER BY update_date DESC`,
                 [req.session.userId], (err, result) => {
                     let tasks = result.rows;
                     db.query('SELECT id, login, first_name, second_name, patronymic FROM users WHERE id = $1', [req.session.userId], (err, result) => {

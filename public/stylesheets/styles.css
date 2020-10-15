@@ -315,7 +315,8 @@ body {
 }
 
 .task-list__item {
-    height: 40px;
+    overflow:hidden;
+    min-height: 40px;
     margin: 20px 20px 0;
     border-radius: 7px;
     border: none;
@@ -419,4 +420,9 @@ textarea {
 .error {
     margin-top: 5px;
     color: #b91a0c;
+}
+
+.task-detail__header-title__status {
+    font-weight: 400;
+    font-size: 20px;
 }
