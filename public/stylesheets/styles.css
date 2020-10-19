@@ -18,7 +18,7 @@ body {
 .container {
     width: 100%;
     max-width: 1024px;
-    padding: 0 15px;
+    /*padding: 0 15px;*/
     margin: 0 auto;
     height: 100%;
 }
@@ -37,6 +37,10 @@ body {
 .header__heading {
     display: flex;
     align-items: center;
+}
+
+.header__menu {
+    margin-right: 15px;
 }
 
 .header__logo {
