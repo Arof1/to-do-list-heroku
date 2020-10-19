@@ -92,6 +92,8 @@ $(function () {
         },
         submitHandler: function() {
 
+            $('#register-login-error').remove()
+
             let user_data = {
                 login: $('#register-login').val(),
                 password: $('#register-password').val(),
@@ -106,8 +108,14 @@ $(function () {
                 data: JSON.stringify(user_data),
                 contentType: 'application/json',
                 url: '/auth/register',
-            }).done(function () {
-                $(location).attr('href', '/');
+            }).done(function (data) {
+                if (!data.login) {
+                    $('#register-login').after('<label id="register-login-error" ' +
+                        'class="error" for="register-login">Такой пользователь уже зарегистрирован</label>')
+                }
+                else {
+                    $(location).attr('href', '/');
+                }
             });
         }
     })

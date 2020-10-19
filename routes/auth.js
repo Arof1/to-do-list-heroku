@@ -14,16 +14,23 @@ router.post('/register', (req, res) => {
 
     let hash = bcrypt.hashSync(password, salt);
     db.query("INSERT INTO users (login, password, first_name, second_name, patronymic, manager_id) VALUES ($1, $2, $3, $4, $5, $6)",
-        [login, hash, first_name, second_name, patronymic, manager_id], (err, res) => {
+        [login, hash, first_name, second_name, patronymic, manager_id], (err, result) => {
             console.log(err, res);
-            db.query("SELECT id FROM users WHERE login=($1)", [login], (err, result) => {
-                req.session.userId = result.rows[0].id;
-                req.session.userLogin = login;
-            });
+            if (err) {
+                return res.json({
+                    login: false
+                })
+            }
+            else {
+                db.query("SELECT id FROM users WHERE login=($1)", [login], (err, result) => {
+                    req.session.userId = result.rows[0].id;
+                    req.session.userLogin = login;
+                })
+                return res.json({
+                    login: true
+                })
+            }
         });
-    return res.json({
-        ok: true
-    })
 });
 
 router.post('/login', (req, res) => {
